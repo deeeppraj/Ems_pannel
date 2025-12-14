@@ -1,16 +1,53 @@
-# React + Vite
+🧩 EMS System (Employee Management System)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EMS System is a role-based task and employee management web application built using React.js.
+The system allows Admins to assign and manage tasks for employees, while Employees can log in to view their personalized task dashboard.
+User authentication and session persistence are handled using React Context API and localStorage.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
+🔐 Authentication & Authorization
 
-## React Compiler
+Role-based login (Admin / Employee)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Persistent sessions using browser localStorage
 
-## Expanding the ESLint configuration
+Users remain logged in until manual logout
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👨‍💼 Admin Dashboard
+
+View all employees
+
+Assign tasks to specific employees
+
+Automatically update task counts (Active / New / Completed / Failed)
+
+Persistent task allocation across page reloads
+
+👨‍💻 Employee Dashboard
+
+View assigned tasks only
+
+Task summary dashboard
+
+Persistent task data after refresh and re-login
+
+🧠 State Management
+
+Global state managed using React Context API
+
+Synchronized UI state and localStorage
+
+Clean separation of Admin and Employee workflows
+
+🛠️ Tech Stack
+
+Frontend: React.js
+
+State Management: Context API, useState, useEffect
+
+Persistence: Browser localStorage
+
+Styling: Tailwind CSS
+
+Build Tool: Vite / CRA
