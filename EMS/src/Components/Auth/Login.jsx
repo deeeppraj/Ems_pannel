@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-function Login() {
+function Login({loginHandler}) {
 
     function submitHandler(e){
         e.preventDefault();
         console.log("Form submitted successfully");
+        loginHandler(email,pass)
         setemail('');
         setpass('');
     }

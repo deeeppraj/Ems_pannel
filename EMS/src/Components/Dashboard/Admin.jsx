@@ -1,6 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import CreateTaskHeader from '../../others/CreateTaskHeader';
+import CreateTaskForm from '../../others/CreateTaskForm';
+import AllTask from '../../others/AllTask';
+import Header from '../../others/Header';
+import { AuthContext } from '../../context/AuthProvider';
 
-function Admin() {
+function Admin(props) {
+    const [title, settitle] = useState('')
+    const [desc, setdesc] = useState('')
+    const [date, setdate] = useState('')
+    const [assign, setassign] = useState('')
+    const [cat, setcat] = useState('')
+  
+
+
+    const [data, setdata] = useContext(AuthContext)
 
     function submitHandler(e){
         e.preventDefault();
@@ -11,100 +25,53 @@ function Admin() {
         setassign('');
         setcat(''); }
 
-    const [title, settitle] = useState('')
-    const [desc, setdesc] = useState('')
-    const [date, setdate] = useState('')
-    const [assign, setassign] = useState('')
-    const [cat, setcat] = useState('')
+
+      
 
   return (
-    <div className='text-white font-mono border-2 h-[92%] w-[50%]
-         pt-5 font-bold px-10 p-1'>
+    <div className='text-white font-mono  flex  flex-col gap-3 w-[90%]
+         font-bold px-10 p-1 h-full overflow-auto no-scrollbar 
+         shrink-0 pt-6'>
 
-        <div className='flex gap-2 items-center pb-3'>
-            <button className='border-2 rounded-xl p-2'>
-                👈
-            </button>
-
-            <h1 className='p-2 text-xl '>
-                Create TASK
-            </h1>
-
+        <div className='pb-10'>
+          <Header name = {'Admin'} click = {props.click}/>
         </div>
 
-        <form 
-        onSubmit={(e)=>{
-            submitHandler(e)
-        }}
-        className='flex flex-col gap-8 mt-5 px-2'>
-            <div>
-                <h1 className='px-1'>Task Title</h1>
-                <input required 
-                value={title}
-                onChange={(e)=>{
-                    settitle(e.target.value)
-                }}  
-                className='w-full border p-2 h-10 rounded-lg bg-gray-900'
-                type="text" placeholder='your task here'/>
-            </div>
+       <div className='border-2 p-5 rounded-lg '>
+        <CreateTaskHeader />
+        <CreateTaskForm />
+       </div>
 
-            <div>
-                <h1 className='px-1'>Description</h1>
-                <textarea 
-                value={desc}
-                onChange={(e)=>{
-                    setdesc(e.target.value)
-                }}
-                className='w-full border bg-gray-900
-                p-2 rounded-lg h-20 wrap-break-word  '
-                type="text" placeholder='task description'/>
-            </div>
+       
 
-            <div>
-                <h1 className='px-1'>Date</h1>
-                <input required
-                    value={date}
-                    onChange={(e)=>{
-                        setdate(e.target.value)
-                    }}
-                className='w-full border p-2 h-10 rounded-lg bg-gray-900
-                '
-                type="date" placeholder='dd-mm-yyyy'/>
-            </div>
+       <div className="flex flex-col bg-gray-700 h-[40%] mt-20 p-4 rounded-md overflow-y-auto no-scrollbar gap-4">
+  
+        <div className="grid grid-cols-5 gap-3 px-7 py-3 sticky top-0 bg-gray-700 text-white font-bold font-mono text-center z-10">
+          <h1>Name</h1>
+          <h3>Active</h3>
+          <h3>New</h3>
+          <h3>Completed</h3>
+          <h3>Failed</h3>
+        </div>
 
-            <div>
-                <h1 className='px-1'>Assign to</h1>
-                <input required
-                value={assign}
-                onChange={(e)=>{
-                    setassign(e.target.value)
-                }}
-                 className='w-full border p-2 h-10 rounded-lg
-                 bg-gray-900'
-                 type="text" />
-            </div>
+        <div className="flex flex-col gap-3">
+          {data.employee.map((e) => (
+            <AllTask
+              key={e.id}
+              name={e.firstName}
+              active={e.taskCounts.active}
+              new={e.taskCounts.newTask}
+              completed={e.taskCounts.completed}
+              failed={e.taskCounts.failed}
+            />
+          ))}
+        </div>
 
-            <div>
-                <h1 className='px-1'>Category</h1>
-                <input required 
-                value={cat}
-                onChange={(e)=>{
-                    setcat(e.target.value)
-                }}
-                
-                className='w-full border p-2 h-10 rounded-lg
-                 bg-gray-900'
-                type="text" placeholder='Design,Devolopement ....' />
-            </div>
+</div>
 
-            <div>
-                <button className='bg-green-900 p-2 w-full rounded-lg
-                text-xl'>
-                    Create Task
-                </button>
-            </div>
-        </form>
 
+
+       
     </div>
   )
 }
