@@ -41,5 +41,4 @@ User authentication and session persistence are handled using **React Context AP
 
 ---
 
-## 📂 Project Structure
 
